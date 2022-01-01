@@ -8,6 +8,10 @@
         }
     }
 
+    $HIBA="";
+    foreach ($hibak as $hiba){
+        $HIBA=$HIBA . $hiba . "<br/>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +45,17 @@
         <label>Közelező kitölteni a * jelölt mezőket</label></br>
 
         <input class="button" name="button_login" type="submit" value="Bejelentkezés">
+        <?php
+        if(isset($_POST["button_login"])){
+            if($k<1){
+                echo "<p class='echo'> Sikeres belépés! </p>";
+                header("mainmenu.php");
+            }
+            else{
+                echo "<p class='echo'>" . $HIBA . "</p></br>";
+            }
+        }
+        ?>
     </form>
 </main>
 </body>
