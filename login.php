@@ -19,7 +19,7 @@
     <p><span>Bejelentkezés</span></p>
 </header>
 <main>
-    <form class="form" method="post" action="login_script.php" autocomplete="off">
+    <form class="form" method="post" action="login.php" autocomplete="off">
         <label for="email_reg">E-mail cím*</label></br>
         <input type="email" size="30" id="email_reg" name="email_reg" required></br>
 
