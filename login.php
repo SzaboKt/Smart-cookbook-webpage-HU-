@@ -1,3 +1,14 @@
+<?php
+    $hibak=[];
+    $k=0;
+    if(isset($_POST["button_login"])){
+        if(!isset($_POST["email_reg"]) || trim($_POST["email_reg"]) ===""){
+            $hibak[$k]="Az e-mail cím megadása kötelező!";
+            $k++;
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -28,7 +39,7 @@
 
         <label>Közelező kitölteni a * jelölt mezőket</label></br>
 
-        <input class="button" type="submit" value="Bejelentkezés">
+        <input class="button" name="button_login" type="submit" value="Bejelentkezés">
     </form>
 </main>
 </body>
