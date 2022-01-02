@@ -1,6 +1,8 @@
 <?php
+    include "common.php";
     $hibak=[];
     $k=0;
+    $all_users=LoadUsers();
      if(isset($_POST["button_reg"])){ //ha megnyomták a "button_reg" nevű gombot
          if(!isset($_POST["last_name_reg"]) || trim($_POST["last_name_reg"]) === ""){
              $hibak[$k]="Kötelező a vezetéknév!";
@@ -43,6 +45,15 @@
                     "email" =>$_POST["email_reg"],
                     "password" => $_POST["pass_reg"]
             ];
+            foreach($all_users as $u){
+                if($u["email"] === $user["email"]){
+                    $hibak[$k]="Ezzel az e-mail címmel már regisztrálva vannak!";
+                    $k=$k+1;
+                }
+            }
+            if($k<1){
+                SaveUser($user);
+            }
          }
 
          $HIBA="";

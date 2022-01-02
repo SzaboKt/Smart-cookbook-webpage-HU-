@@ -19,7 +19,7 @@
         if($file === false){
             die("HIBA: Nem lézetik ez a file!");
         }
-        fwrite($file, unserialize($user)."\n");
+        fwrite($file, serialize($user)."\n");
         fclose($file);
     }
 ?>

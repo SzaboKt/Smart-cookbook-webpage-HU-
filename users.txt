@@ -1,0 +1,1 @@
+a:4:{s:8:"lastname";s:6:"Szabó";s:9:"firstname";s:7:"Katalin";s:5:"email";s:25:"h985342@stud.hu-szeged.hu";s:8:"password";s:3:"fff";}
