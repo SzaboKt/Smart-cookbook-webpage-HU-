@@ -1,4 +1,5 @@
 <?php
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +16,13 @@
 <body id="generatorPage">
     <nav>
         <ul class="user">
+            <?php if(isset($_SESSION["user"])) {?>
+                <li class="user_list"><a class="user_commands" href="profile.php" target="_self">Profilom</a></li>
+                <li class="user_list"><a class="user_commands" href="logout.php" target="_self">Kijelentkezés</a></li>
+            <?php } else{?>
             <li class="user_list"><a class="user_commands" href="registration.php" target="_self">Regisztráció</a></li>
             <li class="user_list"><a class="user_commands" href="login.php" target="_self">Bejelentkezés</a></li>
+            <?php } ?>
         </ul>
     </nav>
     <header>

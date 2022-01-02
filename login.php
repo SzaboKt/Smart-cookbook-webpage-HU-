@@ -1,17 +1,40 @@
 <?php
+    session_start();
+    include "common.php";
     $hibak=[];
     $k=0;
+    $all_users=LoadUsers();
     if(isset($_POST["button_login"])){
-        if(!isset($_POST["email_reg"]) || trim($_POST["email_reg"]) ===""){
+        if(!isset($_POST["email_login"]) || trim($_POST["email_login"]) ===""){
             $hibak[$k]="Az e-mail cím megadása kötelező!";
             $k++;
         }
+        if(!isset($_POST["pass_login"]) || trim($_POST["pass_login"]) ===""){
+            $hibak[$k]="Az jelszó megadása megadása kötelező!";
+            $k++;
+            echo "asd";
+        }
+        if($k<1){
+            $user=[
+                "email"=>($_POST["email_login"]),
+                "pass_login" => $_POST["pass_login"]
+            ];
+            foreach($all_users as $u){
+                if($user["email"] === $u["email"] && $user["pass_login"] === $u["password"]){
+                    $_SESSION["user"]=$user;
+                }
+                else{
+                    $hibak[$k]="Helytelen e-mail/jelszó!";
+                    $k++;
+                }
+            }
+        }
+        $HIBA="";
+        foreach ($hibak as $hiba){
+            $HIBA=$HIBA . $hiba . "<br/>";
+        }
     }
 
-    $HIBA="";
-    foreach ($hibak as $hiba){
-        $HIBA=$HIBA . $hiba . "<br/>";
-    }
 ?>
 
 <!DOCTYPE html>
@@ -36,11 +59,11 @@
 </header>
 <main>
     <form class="form" method="post" action="login.php" autocomplete="off">
-        <label for="email_reg">E-mail cím*</label></br>
-        <input type="email" size="30" id="email_reg" name="email_reg" required></br>
+        <label for="email_login">E-mail cím*</label></br>
+        <input type="email" size="30" id="email_login" name="email_login" required></br>
 
-        <label for="pass_reg">Jelszó*</label></br>
-        <input type="password" size="30" id="pass_reg" name="pass_reg" required></br>
+        <label for="pass_login">Jelszó*</label></br>
+        <input type="password" size="30" id="pass_login" name="pass_login" required></br>
 
         <label>Közelező kitölteni a * jelölt mezőket</label></br>
 
@@ -49,7 +72,7 @@
         if(isset($_POST["button_login"])){
             if($k<1){
                 echo "<p class='echo'> Sikeres belépés! </p>";
-                header("mainmenu.php");
+                header("Location: mainmenu.php");
             }
             else{
                 echo "<p class='echo'>" . $HIBA . "</p></br>";
